@@ -19,7 +19,7 @@ const { error } = require("console");
 
 
 
-mongoose.connect("", {
+mongoose.connect("//enter your db here", {
   useNewUrlParser:true,
   useUnifiedTopology:true,
 
