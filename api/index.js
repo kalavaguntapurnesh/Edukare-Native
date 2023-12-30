@@ -19,7 +19,7 @@ const { error } = require("console");
 
 
 
-mongoose.connect("mongodb+srv://purneshnaveen:<NaveenChintu_6710>@cluster0.cpnojy0.mongodb.net/", {
+mongoose.connect("", {
   useNewUrlParser:true,
   useUnifiedTopology:true,
 
