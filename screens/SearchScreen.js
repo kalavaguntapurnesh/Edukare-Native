@@ -2,9 +2,11 @@ import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { TextInput } from "react-native";
-import Offers from "../components/Offers";
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import One from "../components/One";
+import SearchOne from "../components/SearchOne";
+import SearchTwo from "../components/SearchTwo";
 
 const SearchScreen = () => {
   const navigation = useNavigation();
@@ -37,12 +39,23 @@ const SearchScreen = () => {
       </View>
 
       <View style={{ marginVertical: 15 }}>
-        <Text style={{ fontWeight: "800", fontSize: 17, color:"#1a2b6d", textAlign:"center" }}>
+        <Text
+          style={{
+            fontWeight: "800",
+            fontSize: 17,
+            color: "#1a2b6d",
+            textAlign: "center",
+          }}
+        >
           Browse Categories
         </Text>
       </View>
 
-      <View style={{ marginHorizontal: 20 }}>
+      <SearchOne/>
+
+      <SearchTwo/>
+
+      {/*<View style={{ marginHorizontal: 20 }}>
         <Pressable onPress={() => navigation.navigate("Quiz")}>
           <View
             style={{
@@ -364,7 +377,7 @@ const SearchScreen = () => {
             </View>
           </View>
         </Pressable>
-      </View>
+      </View>*/}
     </ScrollView>
   );
 };

@@ -1,73 +1,82 @@
 import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import ProductItem from "../components/ProductItem";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { Image } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import TrendingData from "../data/TrendingData";
+import Recommendations from "../components/Recommendations";
 
 const StartTest = () => {
+  const navigation = useNavigation();
   const trendingData = TrendingData;
   return (
     <ScrollView style={{ marginTop: 4, backgroundColor: "white", flex: 1 }}>
       <View style={{ marginTop: 60 }}>
-        <Text
+        {/*<Text
           style={{
             fontSize: 22,
             textAlign: "center",
             fontWeight: "bold",
             marginTop: 10,
-            color:"#1a2b6d"
+            color: "#1a2b6d",
           }}
         >
-          Start Writing <Text style={{color:"#e7473c"}}>exams</Text> subject wise.
-        </Text>
+          Tests you've <Text style={{ color: "#e7473c" }}>written</Text> recently
+        </Text>*/}
 
         <View style={{ flex: 1, alignItems: "center", marginTop: 30 }}>
-          <FontAwesome5 name="school" size={120} color="#1a2b6d" />
+          {/*<FontAwesome5 name="school" size={120} color="#1a2b6d" />*/}
+          <Image
+            style={{ width: 120, height: 120, resizeMode: "contain" }}
+            source={{
+              uri: "https://cdn-icons-png.flaticon.com/512/4696/4696755.png",
+            }}
+          ></Image>
         </View>
-        <Text
-          style={{
-            textAlign: "center",
-            fontSize: 17,
-            marginVertical: 14,
-            fontWeight: "600",
-          }}
-        >
-          Browse your favourite subject here.
-        </Text>
-      </View>
 
-
-      <View
-      style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap" }}
-    >
-      {trendingData.map((item, index) => (
-        <Pressable
-          key={index}
-          style={{
-            marginVertical: 10,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <View
+        <View style={{ marginVertical: 12 }}>
+          <Text
             style={{
-              flexDirection: "column",
-              alignItems: "center",
-              marginTop: 10,
+              textAlign: "center",
+              fontSize: 18,
+              color: "#1a2b6d",
+              fontWeight: "bold",
+              lineHeight: 28,
             }}
           >
-            <Image
-              style={{ width: 200, height: 200, resizeMode: "contain" }}
-              source={{ uri: item?.image }}
-            ></Image>
-            <Text>TRENDING</Text>
-          </View>
+            You haven't attempted any tests. Click below to see all the
+            available tests.
+          </Text>
+        </View>
+      </View>
+
+      <View style={{ marginVertical:12 }}>
+        <Pressable
+          onPress={() => navigation.navigate("Main")}
+          style={{
+            width: 360,
+            backgroundColor: "#1a2b6d",
+            borderRadius: 6,
+            marginLeft: "auto",
+            marginRight: "auto",
+            padding: 15,
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 18,
+              fontWeight: "bold",
+              color: "white",
+            }}
+          >
+            Attempt a Test
+          </Text>
         </Pressable>
-      ))}
-    </View>
+      </View>
+
+      <Recommendations />
     </ScrollView>
   );
 };

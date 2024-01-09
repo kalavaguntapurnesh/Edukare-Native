@@ -16,7 +16,7 @@ const CourseInfoScreen = () => {
   const { width } = Dimensions.get("window");
   const height = (width * 100) / 100;
   const navigation = useNavigation();
-  const {title} = route.params;
+  const { title } = route.params;
 
   return (
     <ScrollView
@@ -33,8 +33,15 @@ const CourseInfoScreen = () => {
         ))}
       </ScrollView>
 
-      <View style={{ flex: 1, alignItems: "center" }}>
-        <Text style={{ textAlign: "center", fontSize: 26, fontWeight: "bold", color:"#1a2b6d" }}>
+      <View style={{ flex: 1, alignItems: "center", marginVertical: 12 }}>
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 26,
+            fontWeight: "bold",
+            color: "#1a2b6d",
+          }}
+        >
           {title}
         </Text>
       </View>
@@ -43,8 +50,7 @@ const CourseInfoScreen = () => {
         <Text
           style={{ textAlign: "center", fontSize: 18, marginHorizontal: 10 }}
         >
-          Test Series on the fundamentals of {title} for the Grade of 11
-          - 12
+          Test Series on the fundamentals of {title} for the Grade of 11 - 12
         </Text>
       </View>
 
@@ -59,7 +65,7 @@ const CourseInfoScreen = () => {
           <Feather
             name="check-square"
             size={24}
-            color="black"
+            color="#1a2b6d"
             style={{ marginHorizontal: 8 }}
           />
           <Text style={{ fontWeight: "600", fontSize: 16, color: "#7f7f7f" }}>
@@ -76,7 +82,7 @@ const CourseInfoScreen = () => {
           <Feather
             name="check-square"
             size={24}
-            color="black"
+            color="#1a2b6d"
             style={{ marginHorizontal: 8 }}
           />
           <Text style={{ fontWeight: "600", fontSize: 16, color: "#7f7f7f" }}>
@@ -93,7 +99,7 @@ const CourseInfoScreen = () => {
           <Feather
             name="check-square"
             size={24}
-            color="black"
+            color="#1a2b6d"
             style={{ marginHorizontal: 8 }}
           />
           <Text style={{ fontWeight: "600", fontSize: 16, color: "#7f7f7f" }}>
@@ -114,7 +120,9 @@ const CourseInfoScreen = () => {
           marginVertical: 20,
         }}
       >
-        <Text style={{ fontWeight: "bold", fontSize: 17, color:"white" }}>Start Test</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 17, color: "white" }}>
+          Start Test
+        </Text>
       </Pressable>
     </ScrollView>
   );

@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo_copy.png",
+      "image": "./assets/edukare.png",
       "resizeMode": "contain",
       "backgroundColor": "white"
       

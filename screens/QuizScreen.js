@@ -1,4 +1,13 @@
-import { StyleSheet, Text, SafeAreaView, View, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  View,
+  Pressable,
+  Dimensions,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import questions from "../data/questions";
 import { useNavigation } from "@react-navigation/native";
@@ -7,18 +16,15 @@ const QuizScreen = () => {
   const navigation = useNavigation();
   const data = questions;
   const totalQuestions = data.length;
+  const { height, width } = Dimensions.get("window");
   // points
   const [points, setPoints] = useState(0);
-
   // index of the question
   const [index, setIndex] = useState(0);
-
   // answer Status (true or false)
   const [answerStatus, setAnswerStatus] = useState(null);
-
   // answers
   const [answers, setAnswers] = useState([]);
-
   // selected answer
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
 
@@ -87,20 +93,41 @@ const QuizScreen = () => {
   const currentQuestion = data[index];
   console.log(answerStatus);
 
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+      Alert.alert("Please complete the test!!!")
+    })
+  })
+
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{ paddingTop: 28, backgroundColor: "#f8f9fa", height: "100%" }}
+    >
+      <View style={{ marginTop: 20, marginBottom: 4 }}>
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 26,
+            color: "#1a2b6d",
+          }}
+        >
+          QUIZ TEST
+        </Text>
+      </View>
       <View
         style={{
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
           padding: 10,
-          marginTop: 35,
         }}
       >
-        <Text style={{ fontSize: 20, fontWeight: "600" }}>Test Challenge</Text>
+        <Text style={{ fontSize: 19, fontWeight: "600" }}>Test Challenge</Text>
         <Pressable
-          style={{ padding: 10, backgroundColor: "#1a2b6d", borderRadius: 4 }}
+          style={{ padding: 12, backgroundColor: "#1a2b6d", borderRadius: 4 }}
         >
           <Text
             style={{ color: "white", textAlign: "center", fontWeight: "bold" }}
@@ -157,20 +184,22 @@ const QuizScreen = () => {
       <View
         style={{
           marginTop: 30,
-          backgroundColor: "#f8f9fa",
+          // backgroundColor: "#f8f9fa",
           padding: 10,
           borderRadius: 6,
         }}
       >
         <Text
           style={{
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: "bold",
             paddingHorizontal: 8,
+            lineHeight: 28,
           }}
         >
           {currentQuestion?.question}
         </Text>
+
         <View style={{ marginTop: 12 }}>
           {currentQuestion?.options.map((item, index) => (
             <Pressable
@@ -184,29 +213,34 @@ const QuizScreen = () => {
                   ? {
                       flexDirection: "row",
                       alignItems: "center",
-                      borderWidth: 0.5,
-                      borderColor: "#00FFFF",
+                      //borderWidth: 0.5,
+                      //borderColor: "#00FFFF",
                       marginVertical: 10,
                       backgroundColor: "green",
                       borderRadius: 6,
+                      height: 50,
+                      elevation: 3,
                     }
                   : selectedAnswerIndex != null && selectedAnswerIndex === index
                   ? {
                       flexDirection: "row",
                       alignItems: "center",
-                      borderWidth: 0.5,
-                      borderColor: "#00FFFF",
+                      //borderWidth: 0.5,
+                      //borderColor: "#00FFFF",
                       marginVertical: 10,
-                      backgroundColor: "#e7473c",
+                      backgroundColor: "red",
                       borderRadius: 6,
+                      height: 50,
+                      elevation: 3,
                     }
                   : {
                       flexDirection: "row",
                       alignItems: "center",
-                      borderWidth: 1,
-                      borderColor: "black",
-                      marginVertical: 10,
+                      marginVertical: 9,
                       borderRadius: 6,
+                      height: 50,
+                      elevation: 3,
+                      backgroundColor: "#fff",
                     }
               }
             >
@@ -222,7 +256,7 @@ const QuizScreen = () => {
                     borderRadius: 4,
                     padding: 10,
                   }}
-                  name="check"
+                  name="checkcircle"
                   size={20}
                   color="white"
                 />
@@ -245,20 +279,33 @@ const QuizScreen = () => {
               ) : (
                 <Text
                   style={{
-                    borderColor: "#1a2b6d",
+                    // borderColor: "#1a2b6d",
                     textAlign: "center",
-                    borderWidth: 0.5,
+                    //borderWidth: 0.5,
                     width: 40,
                     height: 40,
-                    borderRadius: 4,
+                    //borderRadius: 4,
                     padding: 10,
+                    //borderColor:"red",
+                    fontWeight: "700",
+                    fontSize: 16,
+                    borderRadius: 4,
+                    backgroundColor: "#1a2b6d",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginHorizontal: 4,
+                    color: "white",
                   }}
                 >
                   {item.options}
                 </Text>
               )}
 
-              <Text style={{ marginLeft: 10 }}>{item.answer}</Text>
+              <Text
+                style={{ marginLeft: 10, fontWeight: "bold", fontSize: 16 }}
+              >
+                {item.answer}
+              </Text>
             </Pressable>
           ))}
         </View>
@@ -318,7 +365,6 @@ const QuizScreen = () => {
             onPress={() =>
               navigation.navigate("Results", {
                 points: points,
-
                 answers: answers,
               })
             }
@@ -338,14 +384,23 @@ const QuizScreen = () => {
             onPress={() => setIndex(index + 1)}
             style={{
               backgroundColor: "#1a2b6d",
-              padding: 16,
+              padding: 20,
               marginLeft: "auto",
               marginRight: "auto",
               marginTop: 20,
               borderRadius: 4,
             }}
           >
-            <Text style={{ color: "white", fontSize: 16 }}>Next Question</Text>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 16,
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              Next Question
+            </Text>
           </Pressable>
         )}
       </View>

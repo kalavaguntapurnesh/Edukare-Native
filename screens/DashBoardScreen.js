@@ -5,6 +5,7 @@ import {
   ScrollView,
   TextInput,
   Alert,
+  SafeAreaView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -13,15 +14,26 @@ import Carousel from "../components/Carousel";
 //import EducationTypes from "../components/EducationTypes";
 import Course from "../components/Course";
 import Services from "../components/Services";
-import Ending from "../components/Ending";
 import Trending from "../components/Trending";
 import Offers from "../components/Offers";
 import axios from "axios";
 import ProductItem from "../components/ProductItem";
+import One from "../components/One";
+import CarouselDown from "../components/CarouselDown";
+import Two from "../components/Two";
+import ThreeOne from "../components/ThreeOne";
+import SearchTwo from "../components/SearchTwo";
 //import * as Location from "expo-location";
 
 const DashBoardScreen = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+      //Alert.alert("Back Clicked");
+    });
+  });
 
   /* const [products, setProducts] = useState([]);
 
@@ -148,20 +160,8 @@ const DashBoardScreen = () => {
       <Carousel />
       <Services />
       {/*Brief Description of the images*/}
-      <Course />
-
-      <View style={{ marginVertical: 20 }}>
-        <Text
-          style={{
-            fontSize: 22,
-            fontWeight: "700",
-            textAlign: "center",
-            color: "#1a2b6d",
-          }}
-        >
-          Recommended <Text style={{ color: "#e7473c" }}>Courses</Text> For You
-        </Text>
-      </View>
+      {/*<Course />*/}
+      <One />
 
       <Trending />
 
@@ -174,19 +174,6 @@ const DashBoardScreen = () => {
         }}
       ></Text>
 
-      <View style={{ marginVertical: 40 }}>
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "700",
-            textAlign: "center",
-            color: "#1a2b6d",
-          }}
-        >
-          Today's <Text style={{ color: "#e7473c" }}>Test</Text> Series
-        </Text>
-      </View>
-
       <Offers />
 
       <Text
@@ -198,7 +185,7 @@ const DashBoardScreen = () => {
         }}
       ></Text>
 
-      <View style={{ marginBottom: 30, marginTop:40 }}>
+      <View style={{ marginBottom: 30, marginTop: 40 }}>
         <Text
           style={{
             fontSize: 20,
@@ -211,9 +198,16 @@ const DashBoardScreen = () => {
         </Text>
       </View>
 
-      <ProductItem />
+      {/*<ProductItem />*/}
 
-      <Ending />
+      {/*<Ending />*/}
+
+      <ThreeOne />
+
+      <SearchTwo />
+
+      <CarouselDown />
+      {/* <Two />*/}
     </ScrollView>
   );
 };
