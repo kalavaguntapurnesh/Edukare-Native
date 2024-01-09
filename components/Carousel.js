@@ -17,11 +17,11 @@ const Carousel = () => {
         autoplay
         circleLoop
         autoplayInterval={2000}
-        dotColor={"#ffc020"}
+        dotColor={"#e7473c"}
         inactiveDotColor={"#90A4AE"}
         ImageComponentStyle={{
-          borderRadius: 8,
-          width: "95%",
+          borderRadius: 4,
+          width: "96%",
           
         }}
       />

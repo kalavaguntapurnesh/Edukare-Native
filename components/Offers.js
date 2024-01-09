@@ -9,65 +9,84 @@ const Offers = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      style={{ marginBottom: 40 }}
-    >
-      {offerData.map((item, index) => (
-        <Pressable key={index}
-          onPress={() =>
-            navigation.navigate("CourseScreen", {
-              id: item.id,
-              title: item.title,
-              price: item?.price,
-              carouselImages: item.carouselImages,
-              color: item?.color,
-              size: item?.size,
-              oldPrice: item?.oldPrice,
-              item: item,
-            })
-          }
+    <View>
+      <View style={{ marginVertical: 24 }}>
+        <Text
           style={{
-            marginVertical: 10,
-            flexDirection: "column",
-            alignItems: "center",
-            marginHorizontal:10
-            
+            fontSize: 22,
+            fontWeight: "700",
+            textAlign: "center",
+            color: "#1a2b6d",
           }}
         >
-          <Image
-            style={{ width: 220, height: 190, resizeMode: "contain" }}
-            source={{ uri: item?.image }}
-          ></Image>
-
-          <View style={{marginVertical:10}}>
-            <Text style={{fontWeight:"bold", fontSize:15, color:"#1a2b6d"}}>{item.title}</Text>
-          </View>
-          <View
+          Today's <Text style={{ color: "#e7473c" }}>Trending</Text> Test Series
+        </Text>
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginBottom: 40}}
+      >
+        {offerData.map((item, index) => (
+          <Pressable
+            key={index}
+            onPress={() =>
+              navigation.navigate("CourseScreen", {
+                id: item.id,
+                title: item.title,
+                price: item?.price,
+                carouselImages: item.carouselImages,
+                color: item?.color,
+                size: item?.size,
+                oldPrice: item?.oldPrice,
+                item: item,
+              })
+            }
             style={{
-              backgroundColor: "#1a2b6d",
-              paddingVertical: 7,
-              width: 130,
-              justifyContent: "center",
+              marginVertical: 10,
+              flexDirection: "column",
               alignItems: "center",
-              marginTop: 10,
-              borderRadius: 4,
+              marginHorizontal: 10,
             }}
           >
-            <Text
+            <Image
+              style={{ width: 220, height: 190, resizeMode: "contain" }}
+              source={{ uri: item?.image }}
+            ></Image>
+
+            <View style={{ marginVertical: 10 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 15, color: "#1a2b6d" }}
+              >
+                {item.title}
+              </Text>
+            </View>
+            <View
               style={{
-                textAlign: "center",
-                color: "white",
-                fontSize: 13,
-                fontWeight: "bold",
+                backgroundColor: "#1a2b6d",
+                paddingVertical: 7,
+                width: 130,
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 10,
+                borderRadius: 4,
               }}
-            >Start Now
-            </Text>
-          </View>
-        </Pressable>
-      ))}
-    </ScrollView>
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontSize: 13,
+                  fontWeight: "bold",
+                }}
+              >
+                Know More
+              </Text>
+            </View>
+          </Pressable>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 

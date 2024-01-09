@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, ScrollView, TextInput, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 import { Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
@@ -6,6 +13,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import ProfileTwo from "../components/profileTwo";
+import ProfileOne from "../components/profileOne";
 
 const ProfileScreen = () => {
   const [name, setName] = useState("");
@@ -15,7 +24,14 @@ const ProfileScreen = () => {
   return (
     <ScrollView style={{ marginTop: 8, backgroundColor: "white", flex: 1 }}>
       <View style={{ marginTop: 60 }}>
-        <Text style={{ fontSize: 24, fontWeight: "bold", textAlign: "center", color:"#1a2b6d" }}>
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "#1a2b6d",
+          }}
+        >
           My Profile
         </Text>
       </View>
@@ -26,16 +42,22 @@ const ProfileScreen = () => {
             height: 120,
             borderRadius: 30,
             resizeMode: "contain",
-            
           }}
           source={{
-            uri: "https://cdn2.iconfinder.com/data/icons/essential-web-2/50/user-ciecle-round-account-person-512.png",
+            uri: "https://cdn-icons-png.flaticon.com/512/219/219983.png",
           }}
         />
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <Text style={{ fontSize: 20, fontWeight: "bold", textAlign: "center", color:"#1a2b6d" }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "#1a2b6d",
+          }}
+        >
           Purnesh Kalavagunta
         </Text>
       </View>
@@ -116,7 +138,7 @@ const ProfileScreen = () => {
           <TextInput
             value={email}
             onChangeText={(text) => setEmail(text)}
-            placeholder="purnesh.kalavagunta@cdn.com"
+            placeholder="kalavaguntapurnesh@gmail.com"
             placeholderTextColor={"black"}
             style={{
               color: "gray",
@@ -127,7 +149,7 @@ const ProfileScreen = () => {
             }}
           ></TextInput>
         </View>
-        <View
+        {/*<View
           style={{
             flexDirection: "row",
             alignItems: "center",
@@ -158,7 +180,7 @@ const ProfileScreen = () => {
               marginHorizontal: 8,
             }}
           ></TextInput>
-        </View>
+          </View>*/}
 
         <View
           style={{
@@ -218,6 +240,10 @@ const ProfileScreen = () => {
           </Text>
         </Pressable>
       </View>
+
+      <ProfileOne />
+
+      <ProfileTwo />
     </ScrollView>
   );
 };
